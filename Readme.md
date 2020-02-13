@@ -11,6 +11,11 @@
 - 类应该对外开放，对修改关闭（遵循开放-关闭原则，通常会引入新的抽象层次，增加代码
 的复杂度。你需要把注意力集中到**最有可能发生变化**的地方，然后应用开放-关闭原则。如果每个
 地方都应用的话，会导致代码抽象度高，难以理解，也是一种浪费）
+- 依赖倒置原则：要依赖抽象，不要依赖具体类。（不管高层组件还是低层组件都应该依赖于抽象）
+> how to do（针对的是可变化的部分）
+1. 变量不可以持有具体类的引用
+2. 不要让类派生自具体类
+3. 不要覆盖基类中已实现的方法
 > 策略模式：定义了算法族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化
 独立于算法的客户。    
 #### 观察者模式
@@ -31,3 +36,77 @@
 ```
         beverage = new Soy(new Mocha(new HouseBlend()));
 ```
+#### 工厂方法模式
+**所有的工厂都是用来封装对象的创建**
+##### 工厂方法
+>定义了一个创建对象的接口，但是由于子类决定要实例化的类是哪一个。工厂方法让类把实例化推迟到子类。从而实现
+使用和创建的解耦
+- 简单工厂，就是把需要实例化的对象，放在一起集中处理，当需要修改的时候，直接修改就该类就可以了。也可以采用静态
+方法来实现，但是有一个缺点就是无法通过extends来修改代码。
+```
+public static Pizza createPizza(String type){
+        Pizza pizza;
+        if(type.equals("cheese")){
+            pizza=new ChicagoCheesePizza();
+        }else if(type.equals("greek")){
+            pizza=new NYGreekPizza();
+        }else{
+            pizza=new NYPepperonPizza();
+        }
+        return pizza;
+    }
+```
+- 简单工厂 vs 工厂模式，简单工厂则是把所有实例化的逻辑，在一个地方处理完了；但是工厂方法是创建一个框架，
+让子类决定要如何实现。
+```
+public abstract class PizzaStore {
+
+    Pizza orderPizza(String type){
+        Pizza pizza =createPizza(type);
+        return pizza;
+    }
+    abstract Pizza createPizza(String type);// factory method
+}
+public class NYStylePizzaStore extends PizzaStore {
+
+    @Override
+    Pizza createPizza(String type) {
+        Pizza pizza;
+        if(type.equals("cheese")){
+            pizza=new NYCheesePizza();
+        }else if(type.equals("greek")){
+            pizza=new NYGreekPizza();
+        }else{
+            pizza=new NYPepperonPizza();
+        }
+        return pizza;
+    }
+}
+```
+##### 抽象工厂模式
+> 提供一个接口，用于创建相关或者依赖对象的家族，而不需要明确指定的具体
+类型。抽象工厂主要是负责创建一组产品的接口
+```
+public interface PizzaIngredientFactory {
+
+    public Dough createDough();
+    public Sauce createSauce();
+    public Cheese createCheese();
+    public Veggies[] createVeggies();
+    public Pepperoni createPepperoni();
+    public Clams createClams();
+
+}
+```
+##### 工厂方法 vs 抽象工厂
+###### 相同点：
+都是负责创建对象，减少应用程序和具体类之间的依赖，实现松耦合。同时都是
+针对抽象编程，而不是具体的类编程。
+
+###### 不相同点：
+
+- 工厂方法是使用继承，把对象的创建委托给子类，子类实现工厂方法创建对象。
+适用于一个产品线。
+- 抽象方法是使用对象组合，对象的创建被实现工厂接口所暴露出来的方法中。
+适用于一个产品家族的抽象。
+ 
