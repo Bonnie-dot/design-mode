@@ -6,8 +6,11 @@ import factory.kinds.NYGreekPizza;
 import factory.kinds.NYPepperonPizza;
 import factory.kinds.Pizza;
 
-public class SimplePizzaFactory {
-    //maybe have other way to need pizza's info
+ public class SimplePizzaFactory {
+     private SimplePizzaFactory() {
+     }
+
+     //maybe have other way to need pizza's info
     // extract code as factor mode
     public static Pizza createPizza(String type){
         Pizza pizza;
