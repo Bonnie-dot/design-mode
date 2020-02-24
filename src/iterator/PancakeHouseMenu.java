@@ -18,12 +18,8 @@ public class PancakeHouseMenu implements Menu {
         menuItems.add(menuItem);
     }
 
-    public ArrayList getMenuItems() {
-        return menuItems;
-    }
-
     @Override
     public Iterator createIterator() {
-        return getMenuItems().iterator();
+        return menuItems.iterator();
     }
 }

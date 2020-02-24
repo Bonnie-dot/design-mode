@@ -10,6 +10,8 @@ public class DinerMenu implements Menu {
         addItems("Vegetarian BLT1", "Fakin with lettuce", true, 23.3);
         addItems("Vegetarian BLT2", "Fakin with lettuce", true, 23.3);
         addItems("Vegetarian BLT3", "Fakin with lettuce", true, 23.3);
+        addItems("Vegetarian BLT4", "Fakin with lettuce", true, 23.3);
+        addItems("Vegetarian BLT5", "Fakin with lettuce", true, 23.3);
     }
 
     public void addItems(String name, String description, boolean vegetarian, double price) {
@@ -22,13 +24,8 @@ public class DinerMenu implements Menu {
         }
     }
 
-    public MenuItem[] getMenuItems() {
-        return menuItems;
-    }
-
-
     @Override
     public Iterator createIterator() {
-        return new DinerMenuIterator(menuItems);
+        return new AlternatingDinerMenuIterator(menuItems);
     }
 }
