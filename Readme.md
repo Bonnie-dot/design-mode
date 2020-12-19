@@ -44,7 +44,7 @@
 > 观察者模式定义了对象之间的一对多的依赖，这样一来，当一个对象改变状态时，它的所有依赖
 都会收到通知并自动更新
 - 应用：java 中具体的体现Observable(遗弃)/swings/javaBeans（PropertyChangeListener）就
-前端来说应该是事件监听、订阅等
+前端来说应该是事件监听、订阅等，promise(push),function,function*(pull))
 #### 装饰者模式
 > 动态地将责任附加到对象上，若要扩展功能，装饰者提供了比继承更有弹性的替代方案
 
