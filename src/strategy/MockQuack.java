@@ -1,6 +1,6 @@
-package duck;
+package strategy;
 
-public class mockQuack extends Squeak {
+public class MockQuack extends Squeak {
     @Override
     public void Quack() {
         System.out.println("mock quack");

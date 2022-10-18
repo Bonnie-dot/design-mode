@@ -1,8 +1,8 @@
-package duck;
+package strategy;
 
 public class DuckCall extends Duck {
     public DuckCall() {
-        quackBehavior =new mockQuack();
+        quackBehavior =new MockQuack();
         flyBehavior = new FlyNoWay();
     }
 

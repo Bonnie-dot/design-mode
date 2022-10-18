@@ -19,11 +19,11 @@ public class WaitressTest {
         dessertMenu.add(new MenuItem("dessert", "this is delicious dessert", false, 40));
         Waitress waitress = new Waitress(allMenus);
 //        waitress.print();
-
-//        CompositeIterator compositeIterator = new CompositeIterator(dessertMenu.createIterator());
-//        System.out.println(compositeIterator.next());
-//        System.out.println(compositeIterator.next());
-//        System.out.println(compositeIterator.next());
+// 都是遍历组合，但是前者是内部遍历，后者是外部遍历。
+        CompositeIterator compositeIterator = new CompositeIterator(dessertMenu.createIterator());
+        System.out.println(compositeIterator.next());
+        System.out.println(compositeIterator.next());
+        System.out.println(compositeIterator.next());
         waitress.printVegetarianMenu();
     }
 }

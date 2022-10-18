@@ -1,4 +1,4 @@
-package duck;
+package strategy;
 
 // satisfy a different behavior for quacking
 public abstract class QuackBehavior {

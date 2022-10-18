@@ -1,4 +1,4 @@
-package duck;
+package strategy;
 
 public class Quack extends QuackBehavior {
     @Override
